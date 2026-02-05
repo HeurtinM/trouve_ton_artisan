@@ -1,0 +1,20 @@
+const express = require('express');
+const router = express.Router();
+
+const categoriesRoutes = require('./categoriesRoutes');
+const specialitesRoutes = require('./specialites.routes');
+// const artisansRoutes = require('./artisans.routes');
+
+// test interne
+router.get('/test', (req, res) => {
+  res.send('API ROUTER OK');
+});
+
+router.use('/categories', categoriesRoutes);
+
+router.use('/specialites', specialitesRoutes);
+
+
+// router.use('/artisans', artisansRoutes);
+
+module.exports = router;

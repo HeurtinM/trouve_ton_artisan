@@ -1,0 +1,83 @@
+const express = require('express');
+const router = express.Router();
+const { Artisan, Specialite, Categorie } = require('../models'); //specialité et catégorie sont la pour le search
+const { Op } = require('sequelize');
+
+router.get('/', async (req, res) => {
+  try {
+    const artisans = await Artisan.findAll();
+    res.json(artisans);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+router.get('/artisans/:id', async(req, res)=>{
+    try{
+        const artisans = await Artisan.findAll({
+            where:{
+                id: req.params.id
+            }
+        })
+        res.json(artisans);
+    }catch (err){
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+})
+
+router.get('/specialite/:id', async (req, res) => {
+  try {
+    const artisans = await Artisan.findAll({
+        where: {
+            specialite_id: req.params.id
+        }
+    });
+    res.json(artisans);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+router.get('/artisans/top', async (req, res) => {
+    try{
+        const artisans = await Artisan.findAll({
+            where: {
+                top: 1
+            }
+        });
+        res.json(artisans);
+    } catch (err) {
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+});
+
+router.get('/artisans/search', async (req, res) => {
+  try {
+    const search = req.query.q;
+
+    const artisans = await Artisan.findAll({
+      include: [
+        {
+          model: Specialite,
+          include: [Categorie]
+        }
+      ],
+      where: {
+        [Op.or]: [
+          { nom: { [Op.like]: `%${search}%` } },
+          { ville: { [Op.like]: `%${search}%` } },
+          { '$Specialite.nom$': { [Op.like]: `%${search}%` } },
+          { '$Specialite.Categorie.nom$': { [Op.like]: `%${search}%` } }
+        ]
+      }
+    });
+
+    res.json(artisans);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+
+module.exports = router;
