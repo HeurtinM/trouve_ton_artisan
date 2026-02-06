@@ -1,6 +1,6 @@
 const express = require('express');
 const sequelize = require('./config/database');
-const routes = require('./routes');
+const routes = require('./routes/index');
 
 const app = express();
 const port = 5000;
@@ -11,11 +11,11 @@ app.use(express.json());
 
 // routes de test
 app.get('/', (req, res) => {
-  res.send('API OK');
+  res.send('API ok');
 });
 
-// routes API
-// app.use('/api', routes);
+//routes API
+app.use('/api', routes);
 
 sequelize.authenticate()
   .then(() => console.log('✅ Connexion DB réussie'))

@@ -3,34 +3,17 @@ const router = express.Router();
 const { Artisan, Specialite, Categorie } = require('../models'); //specialité et catégorie sont la pour le search
 const { Op } = require('sequelize');
 
+console.log("node test")
+
 router.get('/', async (req, res) => {
   try {
-    const artisans = await Artisan.findAll();
-    res.json(artisans);
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur serveur' });
-  }
-});
-
-router.get('/artisans/:id', async(req, res)=>{
-    try{
-        const artisans = await Artisan.findAll({
-            where:{
-                id: req.params.id
-            }
-        })
-        res.json(artisans);
-    }catch (err){
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
-})
-
-router.get('/specialite/:id', async (req, res) => {
-  try {
     const artisans = await Artisan.findAll({
-        where: {
-            specialite_id: req.params.id
+      include: [
+        {
+          model: Specialite,
+          include: [Categorie]
         }
+      ]
     });
     res.json(artisans);
   } catch (err) {
@@ -38,12 +21,37 @@ router.get('/specialite/:id', async (req, res) => {
   }
 });
 
-router.get('/artisans/top', async (req, res) => {
+router.get('/:id', async(req, res)=>{
+    try{
+        const artisans = await Artisan.findAll({
+            where:{
+                id: req.params.id
+            },
+             include: [
+              {
+                model: Specialite,
+                include: [Categorie]
+              }
+            ]  
+        })
+        res.json(artisans);
+    }catch (err){
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+})
+
+router.get('/top', async (req, res) => {
     try{
         const artisans = await Artisan.findAll({
             where: {
                 top: 1
-            }
+            },
+             include: [
+              {
+                model: Specialite,
+                include: [Categorie]
+              }
+            ]
         });
         res.json(artisans);
     } catch (err) {
@@ -51,7 +59,7 @@ router.get('/artisans/top', async (req, res) => {
     }
 });
 
-router.get('/artisans/search', async (req, res) => {
+router.get('/search', async (req, res) => {
   try {
     const search = req.query.q;
 

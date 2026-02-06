@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const categoriesRoutes = require('./categoriesRoutes');
-const specialitesRoutes = require('./specialites.routes');
-// const artisansRoutes = require('./artisans.routes');
+const specialitesRoutes = require('./specialitesRoutes');
+const artisansRoutes = require('./artisansRoutes');
+
+console.log("index routes chargé")
 
 // test interne
 router.get('/test', (req, res) => {
@@ -14,7 +16,6 @@ router.use('/categories', categoriesRoutes);
 
 router.use('/specialites', specialitesRoutes);
 
-
-// router.use('/artisans', artisansRoutes);
+router.use('/artisans', artisansRoutes);
 
 module.exports = router;
