@@ -21,25 +21,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async(req, res)=>{
-    try{
-        const artisans = await Artisan.findAll({
-            where:{
-                id: req.params.id
-            },
-             include: [
-              {
-                model: Specialite,
-                include: [Categorie]
-              }
-            ]  
-        })
-        res.json(artisans);
-    }catch (err){
-        res.status(500).json({ error: 'Erreur serveur' });
-    }
-})
-
 router.get('/top', async (req, res) => {
     try{
         const artisans = await Artisan.findAll({
@@ -59,6 +40,8 @@ router.get('/top', async (req, res) => {
     }
 });
 
+
+//créé en suivant la doc: https://sequelize.org/docs/v7/querying/operators/
 router.get('/search', async (req, res) => {
   try {
     const search = req.query.q;
@@ -86,6 +69,25 @@ router.get('/search', async (req, res) => {
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });
+
+router.get('/:id', async(req, res)=>{
+    try{
+        const artisans = await Artisan.findAll({
+            where:{
+                id: req.params.id
+            },
+             include: [
+              {
+                model: Specialite,
+                include: [Categorie]
+              }
+            ]  
+        })
+        res.json(artisans);
+    }catch (err){
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+})
 
 
 module.exports = router;
