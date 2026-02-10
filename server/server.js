@@ -1,12 +1,16 @@
 const express = require('express');
 const sequelize = require('./config/database');
 const routes = require('./routes/index');
+const cors = require('cors');
 
 const app = express();
 const port = 5000;
 
-console.log('server lancé');
 
+app.use(cors({
+  exposedHeaders: ['Authorization'],
+  origin: "*"
+}));
 app.use(express.json());
 
 // routes de test
