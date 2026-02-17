@@ -1,0 +1,31 @@
+import { useEffect, useState } from "react";
+import ArtisanCard from "../components/ArtisanCard";
+
+const ArtisansList = () =>{
+
+    const [artisans, setArtisans] = useState([]);
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/api/artisans")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setArtisans(data);
+      })
+      .catch(err => {
+      console.error("Erreur fetch artisans:", err);
+    });
+  }, []);
+
+    return(
+        <div>
+            <h1>la liste des artisans</h1>
+            
+            {artisans.map(a => (
+                <ArtisanCard key={a.id} artisan={a} />
+            ))}
+        </div>
+    )
+}
+
+export default ArtisansList;

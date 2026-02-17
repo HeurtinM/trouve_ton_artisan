@@ -72,7 +72,7 @@ router.get('/search', async (req, res) => {
 
 router.get('/:id', async(req, res)=>{
     try{
-        const artisans = await Artisan.findAll({
+        const artisans = await Artisan.findOne({
             where:{
                 id: req.params.id
             },
