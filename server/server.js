@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const sequelize = require('./config/database');
 const routes = require('./routes/index');
@@ -6,6 +7,7 @@ const cors = require('cors');
 const app = express();
 const port = 5000;
 
+console.log("ENV LOADED:", process.env.MAIL_HOST, process.env.MAIL_PORT);
 
 app.use(cors({
   exposedHeaders: ['Authorization'],

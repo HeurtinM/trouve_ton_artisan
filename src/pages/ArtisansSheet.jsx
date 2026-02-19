@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ContactForm from "../components/ContactForm";
 
 const ArtisansSheet = () =>{
     
@@ -35,7 +36,12 @@ const ArtisansSheet = () =>{
             <p>{artisan.a_propos}</p>
 
             {artisan.email
-            ? <p>{artisan.email}</p>
+            ? (
+                <>
+                  <h4>Contactez cet artisan :</h4>
+                  <ContactForm artisan={artisan} />
+                </>
+              )
             : <p>{artisan.site_web}</p>
             }
             

@@ -16,7 +16,6 @@ const ArtisansList = () =>{
       console.error("Erreur fetch artisans:", err);
     });
   }, []);
-
     return(
         <div>
             <h1>la liste des artisans</h1>

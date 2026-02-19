@@ -4,6 +4,7 @@ const router = express.Router();
 const categoriesRoutes = require('./categoriesRoutes');
 const specialitesRoutes = require('./specialitesRoutes');
 const artisansRoutes = require('./artisansRoutes');
+const contactRoutes = require("./contactRoutes");
 
 console.log("index routes chargé")
 
@@ -17,5 +18,7 @@ router.use('/categories', categoriesRoutes);
 router.use('/specialites', specialitesRoutes);
 
 router.use('/artisans', artisansRoutes);
+
+router.use("/contact", contactRoutes);
 
 module.exports = router;
