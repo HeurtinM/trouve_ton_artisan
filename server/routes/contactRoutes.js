@@ -17,6 +17,11 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+//la route n'est pas faite pour renvoier des donnée, ce message est just pour verifier rapidement le bon fonctionnement via URL si besoin
+router.get("/", (req, res) => {
+  res.json({ message: "Route contact OK" });
+});
+
 router.post("/", async (req, res) => {
   try {
     const { artisanEmail, nom, prenom, email, sujet, message } = req.body;

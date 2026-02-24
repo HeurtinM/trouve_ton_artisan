@@ -83,7 +83,12 @@ router.get('/:id', async(req, res)=>{
               }
             ]  
         })
-        res.json(artisans);
+        if (!artisans) {
+          return res.status(404).json({ error: "Artisan introuvable" });
+        }
+        else{
+          res.json(artisans);
+        }
     }catch (err){
         res.status(500).json({ error: 'Erreur serveur' });
     }
