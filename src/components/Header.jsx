@@ -20,8 +20,8 @@ const Header = () => {
 
   return (
     <header>
+      <Link to = "/"><img src="/Logo.png" alt="Logo Trouve ton artisan" width="120"></img></Link>
       <nav>
-        <Link to = "/">Home</Link>
         {categories.map(categorie => (
           <Link to={`/search?q=${categorie.nom}`}> {categorie.nom} </Link>
         ))}

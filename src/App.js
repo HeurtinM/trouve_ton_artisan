@@ -6,6 +6,7 @@ import ArtisanSheet from "./pages/ArtisansSheet";
 import Search from "./pages/Search";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
+import Footer from "./components/Footer"
 
 function App() {
   return(
@@ -21,6 +22,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
     </Routes>
       </main>
+      <Footer/>
     </div>
   );
 }
