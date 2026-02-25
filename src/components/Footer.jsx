@@ -12,11 +12,11 @@ const Footer = () => {
             <li><a href="tel:+33426734000">+33 (0)4 26 73 40 00</a></li>
         </ul>
         <ul>
-          <li><Link to="/">Mentions légales</Link></li>
-          <li><Link to="/">Données personnelles</Link></li>
-          <li><Link to="/">Accessibilité</Link></li>
-          <li><Link to="/">Politique des cookies</Link></li>
-          <li><Link to="/">Gestion des cookies</Link></li>
+          <li><Link to="/Accessibility">Mentions légales</Link></li>
+          <li><Link to="/PersonalDatas">Données personnelles</Link></li>
+          <li><Link to="/CookiesPolicy">Accessibilité</Link></li>
+          <li><Link to="/LegalMentions">Politique des cookies</Link></li>
+          <li><Link to="/Cookies">Gestion des cookies</Link></li>
         </ul>
       </nav>
     </footer>
