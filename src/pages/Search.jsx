@@ -24,7 +24,7 @@ const Search = () =>{
 
     return(
         <div>
-            <h1>resultat de recherche</h1>
+            <h1>Résultats pour {q}</h1>
             
             {artisans.map(a => (
                 <ArtisanCard key={a.id} artisan={a} />

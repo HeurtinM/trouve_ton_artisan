@@ -26,7 +26,7 @@ const ArtisansSheet = () =>{
 
     return(
         <div>
-            <h3> fiche artisan</h3>
+            <h1> fiche artisan</h1>
 
             <p>{artisan.nom}</p>
             <p>{artisan.image}</p>
