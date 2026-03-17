@@ -12,12 +12,13 @@ import Cookies from "./components/Cookies";
 import CookiesPolicy from "./components/CookiesPolicy";
 import LegalMentions from "./components/LegalMentions";
 import PersonalDatas from "./components/PersonalDatas";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   return(
-    <div className="App">
+    <div className="App d-flex flex-column min-vh-100"> 
       <Header/>
-      <main>
+      <main className="flex-grow-1">
 
       <Routes>
         <Route path="/" element={<Home/>}/>

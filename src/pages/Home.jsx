@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import ArtisanCard from "../components/ArtisanCard";
 
-const Home = ()=> {
-
+const Home = () => {
   const [artisans, setArtisans] = useState([]);
 
   useEffect(() => {
@@ -13,31 +12,64 @@ const Home = ()=> {
         setArtisans(data);
       })
       .catch(err => {
-      console.error("Erreur fetch artisans:", err);
-      setArtisans([]); //ajouter après que mySQL ce soit fermer mais le catch ci dessus ne semblais pas réagir, créant un bug avec la fonction map dans le return
-    });
+        console.error("Erreur fetch artisans:", err);
+        setArtisans([]);
+      });
   }, []);
 
-  //j'utilise le fonction map pour mettre les artisans du mois dans des elements ArtisanCard. Fait en suivant divers post forums et surtout: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
   return (
-    <div>
-      <h1>Bienvenu sur Trouve ton artisan !</h1>
-      <section>
-        <h2>Comment Trouver mon artisan ?</h2>
-        <ul>
-          <li>1. Choisir la catégorie d’artisanat dans le menu.</li>
-          <li>2. Choisir un artisan.</li>
-          <li>3. Le contacter via le formulaire de contact.</li>
-          <li>4. Une réponse sera apportée sous 48h.</li>
-        </ul>
-      </section>
-      <section>
-      {artisans.map(a => (
-        <ArtisanCard key={a.id} artisan={a} />
-      ))}
-      </section>
+    <div className="container py-4" style={{ color: "#00497C" }}>
+
+      {/* Titre principal */}
+      <h1 className="text-center fw-bold mb-4">
+        Bienvenu sur Trouve ton artisan !
+      </h1>
+
+      {/* Layout desktop : 2 colonnes / mobile : 1 colonne */}
+      <div className="row g-4">
+
+        {/* Colonne gauche : Comment trouver mon artisan */}
+        <div className="col-12 col-md-6" style={{ fontSize: "1.35rem" }}>
+          <h2
+            className="mb-3"
+            style={{
+              textDecoration: "underline",
+              fontSize: "1.1rem",
+              cursor: "pointer",
+              color: "inherit"
+            }}
+          >
+            Comment trouver mon artisan ?
+          </h2>
+          <ol className="ps-3" style={{ listStyleType: "decimal" }}>
+            <li className="mb-1">Choisir la catégorie d'artisanat dans le menu.</li>
+            <li className="mb-1">Choisir un artisan.</li>
+            <li className="mb-1">Le contacter via le formulaire de contact.</li>
+            <li className="mb-1">Une réponse sera apportée sous 48h.</li>
+          </ol>
+        </div>
+
+        {/* Colonne droite : Artisans du mois */}
+        <div className="col-12 col-md-6">
+          <h2
+            className="mb-3 text-center"
+            style={{
+              textDecoration: "underline",
+              fontSize: "1.1rem"
+            }}
+          >
+            Artisans du mois
+          </h2>
+          <div>
+            {artisans.map(a => (
+              <ArtisanCard key={a.id} artisan={a} />
+            ))}
+          </div>
+        </div>
+
+      </div>
     </div>
   );
-}
+};
 
 export default Home;

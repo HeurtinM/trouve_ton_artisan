@@ -18,24 +18,53 @@ const Header = () => {
       });
   }, []);
 
-  return (
-    <header>
-      <Link to = "/"><img src="/Logo.png" alt="Logo Trouve ton artisan" width="120"></img></Link>
-      <nav>
+return (
+<header className="navbar navbar-expand-lg bg-light" style={{backgroundColor: "#F1F8FC"}}>
+  <div className="container-fluid">
+
+    <Link className="navbar-brand" to="/">
+      <img src="/Logo.png" alt="Logo Trouve ton artisan" width="220"/>
+    </Link>
+
+    <button
+      className="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+
+    <div className="collapse navbar-collapse" id="navbarNav">
+
+      <div className="navbar-nav ms-auto ">
         {categories.map(categorie => (
-          <Link to={`/search?q=${categorie.nom}`}> {categorie.nom} </Link>
+          <Link
+            key={categorie.id}
+            className="nav-link"
+            to={`/search?q=${categorie.nom}`}
+          >
+            {categorie.nom}
+          </Link>
         ))}
-        <form action="/search" method="GET">
-          <input
-            type="text"
-            name="q"
-            placeholder="Rechercher un artisan..."
-          />
-          <button type="submit">Rechercher</button>
-        </form>
-      </nav>
-    </header>
-  );
+      </div>
+
+      <form className="d-flex" action="/search" method="GET">
+        <input
+          className="form-control me-2"
+          type="text"
+          name="q"
+          placeholder="Rechercher un artisan..."
+        />
+        <button className="btn btn-outline-primary">
+          Rechercher
+        </button>
+      </form>
+
+    </div>
+  </div>
+</header>
+);
 };
 
 export default Header;
