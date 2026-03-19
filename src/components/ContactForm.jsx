@@ -1,16 +1,15 @@
 import { useState } from "react";
 
-const ContactForm = ({ artisan }) => {
+const ContactForm = ({ artisan, onSuccess }) => {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const [sujet, setSujet] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState(""); // pour feedback
+  const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch("http://localhost:5000/api/contact", {
         method: "POST",
@@ -23,63 +22,98 @@ const ContactForm = ({ artisan }) => {
           message
         })
       });
-
       const data = await response.json();
-
       if (response.ok) {
-        setStatus("Message envoyé !");
+        setStatus("success");
       } else {
-        setStatus("Erreur d'envoi : " + data.error);
+        setStatus("error: " + data.error);
       }
     } catch (err) {
       console.error("Erreur fetch contact:", err);
-      setStatus("Erreur réseau, réessayez");
+      setStatus("error: Erreur réseau, réessayez");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Votre nom</h3>
-      <input
-        type="text"
-        placeholder="Nom"
-        value={nom}
-        onChange={(e) => setNom(e.target.value)}
-      />
+    <form onSubmit={handleSubmit} style={{ color: "#00497C" }}>
 
-      <input
-        type="text"
-        placeholder="Prenom"
-        value={prenom}
-        onChange={(e) => setPrenom(e.target.value)}
-      />
+      <h3>Votre nom</h3>
+      <div className="row mb-3">
+        <div className="col-6">
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Nom"
+            value={nom}
+            onChange={(e) => setNom(e.target.value)}
+          />
+        </div>
+        <div className="col-6">
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Prénom"
+            value={prenom}
+            onChange={(e) => setPrenom(e.target.value)}
+          />
+        </div>
+      </div>
 
       <h3>Email</h3>
-      <input
-        type="email"
-        placeholder="exemple@mail.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="mb-3">
+        <input
+          className="form-control"
+          type="email"
+          placeholder="myname@exemple.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
 
       <h3>Sujet</h3>
-      <input
-        type="text"
-        placeholder="Sujet"
-        value={sujet}
-        onChange={(e) => setSujet(e.target.value)}
-      />
+      <div className="mb-3">
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Sujet"
+          value={sujet}
+          onChange={(e) => setSujet(e.target.value)}
+        />
+      </div>
 
       <h3>Message</h3>
-      <textarea
-        placeholder="Votre message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
+      <div className="mb-3">
+        <textarea
+          className="form-control w-100"
+          placeholder="Votre message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          rows={6}
+        />
+      </div>
 
-      <button type="submit">Envoyer</button>
+      <div className="text-center">
+        {status === "success" ? (
+          <>
+            <p className="text-success fw-bold">Message envoyé !</p>
+            <button
+              type="button"
+              className="btn btn-outline-primary px-4"
+              onClick={onSuccess}
+            >
+              Fermer
+            </button>
+          </>
+        ) : (
+          <>
+            {status && <p className="text-danger">{status.replace("error: ", "")}</p>}
+            <button type="submit" className="btn btn-outline-primary px-4">
+              Envoyer
+            </button>
+          </>
+        )}
+      </div>
 
-      {status && <p>{status}</p>}
     </form>
   );
 };

@@ -19,9 +19,9 @@ const ArtisanCard = ({ artisan }) => {
   return (
     <Link 
       to={`/artisans/${artisan.id}`} 
-      style={{ textDecoration: "none", color: "inherit" }}
+      style={{ textDecoration: "none" }}
     >
-      <div className="card mb-3 shadow-sm">
+      <div className="card mb-3 shadow-sm" style={{ color: "#00497C" }}>
         
         <div className="card-body">
 

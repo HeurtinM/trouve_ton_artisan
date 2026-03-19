@@ -23,13 +23,16 @@ const Search = () =>{
   }, [q]);
 
     return(
-        <div>
-            <h1>Résultats pour {q}</h1>
-            
-            {artisans.map(a => (
-                <ArtisanCard key={a.id} artisan={a} />
-            ))}
+        <div className="container py-4" style={{ color: "#00497C" }}>
+        <h1 className="mb-4">Résultats pour « {q} »</h1>
+        <div className="row row-cols-1 row-cols-md-2 g-3">
+          {artisans.map(a => (
+            <div className="col" key={a.id}>
+              <ArtisanCard artisan={a} />
+            </div>
+          ))}
         </div>
+      </div>
     )
 }
 

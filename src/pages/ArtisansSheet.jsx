@@ -54,11 +54,11 @@ const ArtisansSheet = () => {
       <div className="row g-4 justify-content-between">
 
         {/* Colonne gauche : infos + image */}
-        <div className="col-12 col-md-6" style={{ marginLeft: "-5rem" }}> {/* le marginLeft negatif est une solution très moche pour positioner cette section comme dans la maquette mais je n'ai pas trouver de solution bootstrap*/}
+        <div className="col-12 col-md-6" > 
           <div className="row">
 
             {/* Infos */}
-            <div className="col-6">
+            <div className="col-6" style={{ marginLeft: "-1rem" }}> {/* le marginLeft negatif est une solution très moche pour positioner cette section comme dans la maquette mais je n'ai pas trouver de solution bootstrap*/}
               <h2 className="fw-bold">{artisan.nom}</h2>
               <p className="mb-1">{artisan.ville}</p>
               <p className="mb-1">{artisan.Specialite?.nom}</p>
@@ -66,7 +66,7 @@ const ArtisansSheet = () => {
             </div>
 
             {/* Image */}
-            <div className="col-6">
+            <div className="col-6"> 
               {artisan.image ? (
                 <img
                   src={artisan.image}
@@ -123,7 +123,7 @@ const ArtisansSheet = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ContactForm artisan={artisan} onSuccess={() => setShowModal(false)} />
+          <ContactForm artisan={artisan}/>
         </Modal.Body>
       </Modal>
 
