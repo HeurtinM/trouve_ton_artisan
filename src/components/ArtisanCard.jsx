@@ -24,8 +24,8 @@ const ArtisanCard = ({ artisan }) => {
     >
       <div className="card mb-3 shadow-sm" style={{ color: "#00497C" }}>
         <div className="card-body">
-          <div className="row align-items-center">
-            {/* gauche */}
+          <div className="row align-items-center">     
+            {/*div gauche*/}
             <div className="col-6">
               <h5 className="fw-bold mb-1">
                 {artisan.nom}
@@ -34,7 +34,7 @@ const ArtisanCard = ({ artisan }) => {
                 {artisan.ville}
               </p>
             </div>
-            {/* droite */}
+            {/*div droite*/}
             <div className="col-6 text-end">
               <p className="mb-1 fw-semibold">
                 {artisan.Specialite?.nom}

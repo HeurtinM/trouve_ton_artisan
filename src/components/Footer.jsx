@@ -5,7 +5,7 @@ const Footer = () => {
     <footer style={{ backgroundColor: "#0074C7", color: "white" }}>
       <div className="container py-4">
         <div className="row">
-          {/* Adresse */}
+          {/* adresse */}
           <div className="col-12 col-md-6">
             <ul className="list-unstyled">
               <li>101 cours Charlemagne</li>
@@ -18,9 +18,9 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          {/* Ligne de séparation mobile */}
+          {/* ligne de séparation, n'apparait que sur mobile */}
           <hr className="border-light d-md-none"/>
-          {/* Liens */}
+          {/* liens */}
           <div className="col-12 col-md-6">
             <ul className="list-unstyled d-flex flex-wrap gap-3 d-md-block text-start text-md-end">
               <li><Link to="/LegalMentions" style={{ color: "white" }}>Mentions légales</Link></li>

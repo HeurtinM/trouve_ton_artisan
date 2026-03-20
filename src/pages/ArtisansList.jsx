@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ArtisanCard from "../components/ArtisanCard";
 
+//list de tout les artisans. non accessible directement via le site, utilisé à des fin de test + si besoin dans le future
 const ArtisansList = () =>{
 
     const [artisans, setArtisans] = useState([]);
@@ -19,7 +20,6 @@ const ArtisansList = () =>{
     return(
         <div>
             <h1>la liste des artisans</h1>
-            
             {artisans.map(a => (
                 <ArtisanCard key={a.id} artisan={a} />
             ))}

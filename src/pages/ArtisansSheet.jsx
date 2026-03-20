@@ -22,6 +22,7 @@ const ArtisansSheet = () => {
 
   if (!artisan) return <p>Recuperation</p>;
 
+  //fonction pour déterminer si le titre doit utilisé "de" ou "d'"
   const prefix = () => {
     if ("AEIOUYHaeiouyh".includes(artisan.nom.charAt(0))) {
       return "d'";
@@ -30,6 +31,7 @@ const ArtisansSheet = () => {
     }
   };
 
+  //fonction pour transformer la note sur 5 en étoile. Cette fonction ne permet pas d'afficher des demi étoiles en cas de note à virgule. Dans ce cas la note est arrondie
   const renderStars = (note) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -44,28 +46,22 @@ const ArtisansSheet = () => {
 
   return (
     <div className="container py-4" style={{ color: "#00497C" }}>
-
-      {/* Titre */}
       <h1 className="text-center fw-bold mb-4">
         Fiche Artisan {prefix()}{artisan.nom}
       </h1>
-
-      {/* Bloc principal */}
+      {/* bloc principal */}
       <div className="row g-4 justify-content-between">
-
-        {/* Colonne gauche : infos + image */}
+        {/* div de gauche*/}
         <div className="col-12 col-md-6" > 
           <div className="row">
-
-            {/* Infos */}
+            {/* infos */}
             <div className="col-6" style={{ marginLeft: "-1rem" }}> {/* le marginLeft negatif est une solution très moche pour positioner cette section comme dans la maquette mais je n'ai pas trouver de solution bootstrap*/}
               <h2 className="fw-bold">{artisan.nom}</h2>
               <p className="mb-1">{artisan.ville}</p>
               <p className="mb-1">{artisan.Specialite?.nom}</p>
               <div>{renderStars(artisan.note)}</div>
             </div>
-
-            {/* Image */}
+            {/* image */}
             <div className="col-6"> 
               {artisan.image ? (
                 <img
@@ -85,16 +81,13 @@ const ArtisansSheet = () => {
 
           </div>
         </div>
-
-        {/* Colonne droite : À propos */}
+        {/* div de droite: À propos */}
         <div className="col-12 col-md-4">
           <h2 className="fw-bold">À propos</h2>
           <p>{artisan.a_propos}</p>
         </div>
-
       </div>
-
-      {/* Bouton Contactez moi */}
+      {/* bouton Contactez moi */}
       {artisan.email && (
         <div className="text-center mt-4">
           <button
@@ -105,8 +98,7 @@ const ArtisansSheet = () => {
           </button>
         </div>
       )}
-
-      {/* Site web si pas d'email */}
+      {/* site web si pas d'email */}
       {!artisan.email && artisan.site_web && (
         <div className="text-center mt-4">
           <a href={artisan.site_web} target="_blank" rel="noreferrer">
@@ -114,8 +106,7 @@ const ArtisansSheet = () => {
           </a>
         </div>
       )}
-
-      {/* Modale formulaire de contact */}
+      {/* modale formulaire de contact*/}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title style={{ color: "#00497C" }}>
@@ -126,7 +117,6 @@ const ArtisansSheet = () => {
           <ContactForm artisan={artisan}/>
         </Modal.Body>
       </Modal>
-
     </div>
   );
 };

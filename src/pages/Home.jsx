@@ -19,16 +19,12 @@ const Home = () => {
 
   return (
     <div className="container py-4" style={{ color: "#00497C" }}>
-
-      {/* Titre principal */}
       <h1 className="text-center fw-bold mb-4">
         Bienvenu sur Trouve ton artisan !
       </h1>
-
-      {/* Layout desktop : 2 colonnes / mobile : 1 colonne */}
+      {/* layout desktop: 2 colonnes / mobile: 1 colonne */}
       <div className="row g-4">
-
-        {/* Colonne gauche : Comment trouver mon artisan */}
+        {/* div de gauche : Comment trouver mon artisan */}
         <div className="col-12 col-md-6" style={{ fontSize: "1.35rem" }}>
           <h2
             className="mb-3"
@@ -48,8 +44,7 @@ const Home = () => {
             <li className="mb-1">Une réponse sera apportée sous 48h.</li>
           </ol>
         </div>
-
-        {/* Colonne droite : Artisans du mois */}
+        {/* div de droite : Artisans du mois */}
         <div className="col-12 col-md-6">
           <h2
             className="mb-3 text-center"
@@ -66,7 +61,6 @@ const Home = () => {
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );

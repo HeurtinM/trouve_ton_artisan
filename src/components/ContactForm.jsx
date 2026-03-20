@@ -8,6 +8,7 @@ const ContactForm = ({ artisan, onSuccess }) => {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
 
+  //fonction pour envoyer un mail via le formulaire de contact
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -36,7 +37,6 @@ const ContactForm = ({ artisan, onSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit} style={{ color: "#00497C" }}>
-
       <h3>Votre nom</h3>
       <div className="row mb-3">
         <div className="col-6">
@@ -46,6 +46,7 @@ const ContactForm = ({ artisan, onSuccess }) => {
             placeholder="Nom"
             value={nom}
             onChange={(e) => setNom(e.target.value)}
+            required
           />
         </div>
         <div className="col-6">
@@ -55,10 +56,10 @@ const ContactForm = ({ artisan, onSuccess }) => {
             placeholder="Prénom"
             value={prenom}
             onChange={(e) => setPrenom(e.target.value)}
+            required
           />
         </div>
       </div>
-
       <h3>Email</h3>
       <div className="mb-3">
         <input
@@ -67,9 +68,9 @@ const ContactForm = ({ artisan, onSuccess }) => {
           placeholder="myname@exemple.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </div>
-
       <h3>Sujet</h3>
       <div className="mb-3">
         <input
@@ -78,9 +79,9 @@ const ContactForm = ({ artisan, onSuccess }) => {
           placeholder="Sujet"
           value={sujet}
           onChange={(e) => setSujet(e.target.value)}
+          required
         />
       </div>
-
       <h3>Message</h3>
       <div className="mb-3">
         <textarea
@@ -89,9 +90,9 @@ const ContactForm = ({ artisan, onSuccess }) => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={6}
+          required
         />
       </div>
-
       <div className="text-center">
         {status === "success" ? (
           <>
@@ -106,14 +107,13 @@ const ContactForm = ({ artisan, onSuccess }) => {
           </>
         ) : (
           <>
-            {status && <p className="text-danger">{status.replace("error: ", "")}</p>}
+            {status && <p className="text-danger">{status.replace("error: ", "")}</p>} {/*affiche un message d'érreur plus clair pour l'utilisateur en cas de besoin*/}
             <button type="submit" className="btn btn-outline-primary px-4">
               Envoyer
             </button>
           </>
         )}
       </div>
-
     </form>
   );
 };
