@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const ArtisanCard = ({ artisan }) => {
 
+  //fonction pour transformer la note sur 5 en étoile. Cette fonction ne permet pas d'afficher des demi étoiles en cas de note à virgule. Dans ce cas la note est arrondie
   const renderStars = (note) => {
     const stars = [];
 
@@ -22,39 +23,28 @@ const ArtisanCard = ({ artisan }) => {
       style={{ textDecoration: "none" }}
     >
       <div className="card mb-3 shadow-sm" style={{ color: "#00497C" }}>
-        
         <div className="card-body">
-
           <div className="row align-items-center">
-
             {/* gauche */}
             <div className="col-6">
               <h5 className="fw-bold mb-1">
                 {artisan.nom}
               </h5>
-
               <p className="mb-0">
                 {artisan.ville}
               </p>
             </div>
-
             {/* droite */}
             <div className="col-6 text-end">
-
               <p className="mb-1 fw-semibold">
                 {artisan.Specialite?.nom}
               </p>
-
               <div style={{ color: "#0074C7", fontSize: "20px" }}>
                 {renderStars(artisan.note)}
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
     </Link>
   );
