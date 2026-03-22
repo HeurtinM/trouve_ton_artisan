@@ -36,6 +36,7 @@ router.get('/top', async (req, res) => {
         });
         res.json(artisans);
     } catch (err) {
+        console.error(err);
         res.status(500).json({ error: 'Erreur serveur' });
     }
 });
