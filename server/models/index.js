@@ -1,6 +1,6 @@
-const Artisan = require('./artisan');
-const Specialite = require('./specialite');
-const Categorie = require('./categorie');
+const Artisan = require('./Artisan');
+const Specialite = require('./Specialite');
+const Categorie = require('./Categorie');
 
 // Relations
 Categorie.hasMany(Specialite, { foreignKey: 'categorie_id' });
