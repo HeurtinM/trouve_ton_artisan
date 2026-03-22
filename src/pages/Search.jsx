@@ -15,7 +15,7 @@ const Search = () =>{
         .then(res => res.json())
         .then(data => {
           console.log(data);
-          setArtisans(data);
+          setArtisans(Array.isArray(data) ? data : []);
         })
         .catch(err => {
         console.error("Erreur fetch artisans:", err);
