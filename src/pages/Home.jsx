@@ -5,7 +5,7 @@ const Home = () => {
   const [artisans, setArtisans] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/artisans/top`)
+    fetch(`${process.env.REACT_APP_API_URL}/api/artisans/top`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
