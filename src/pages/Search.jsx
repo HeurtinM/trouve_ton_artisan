@@ -11,7 +11,7 @@ const Search = () =>{
     const q = queryParams.get("q") || "";
     //fonction de recherche standard. recherche dans les data tout les elements qui ont le string renseigner par l'utilisateur
     useEffect(() => {
-      fetch(`http://localhost:5000/api/artisans/search?q=${q}`)
+      fetch(`${import.meta.env.VITE_API_URL}/api/artisans/search?q=${q}`)
         .then(res => res.json())
         .then(data => {
           console.log(data);
