@@ -5,22 +5,24 @@ const Home = () => {
   const [artisans, setArtisans] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/artisans/top`)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setArtisans(Array.isArray(data) ? data : []);
-      })
-      .catch(err => {
-        console.error("Erreur fetch artisans:", err);
-        setArtisans([]);
-      });
+    const fetchArtisans = () => {
+      fetch(`${process.env.REACT_APP_API_URL}/api/artisans/top`)
+        .then(res => res.json())
+        .then(data => {
+          setArtisans(Array.isArray(data) ? data : []);
+        })
+        .catch(err => {
+          console.error("Erreur fetch artisans:", err);
+          setTimeout(fetchArtisans, 3000); // réessaie toutes les 3 secondes
+        });
+    };
+      fetchArtisans();
   }, []);
 
   return (
     <div className="container py-4" style={{ color: "#00497C" }}>
       <h1 className="text-center fw-bold mb-4">
-        Bienvenu sur Trouve ton artisan !
+        Bienvenue sur Trouve ton artisan !
       </h1>
       {/* layout desktop: 2 colonnes / mobile: 1 colonne */}
       <div className="row g-4">
